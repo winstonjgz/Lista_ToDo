@@ -72,7 +72,7 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        db, c = get_db
+        db, c = get_db()
         c.execute(
             'select * from user where id = %s', (user_id,)
         )
@@ -96,4 +96,4 @@ def login_required(view):
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('login'))
+    return redirect(url_for('auth.login'))

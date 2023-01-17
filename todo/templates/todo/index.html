@@ -10,30 +10,30 @@
 {% endblock %}
 
 {% block content %}
-<ul>
-    {% for todo in ToDos %}
-    <li class="todo">
-        <div>
-            <h1>
-                {% if todo['completed'] == 1 %}
-                    <strike> {{ todo['description'] }} </strike>
-                {% else %}
-                    {{ todo['description'] }}
-           
-                {% endif %}
-                
-            </h1>
-            <div class="about">
-                {{ todo['created_at'].strftime('%Y-%m-%d') }}
-                <a href="{{ url_for('todo.update', id=todo['id']) }}" class="action"> Editar </a>
+    <ul>
+        {% for todo in todos %}
+        <li class="todo">
+            <div>
+                <h1>
+                    {% if todo['completed'] == 1 %}
+                        <strike> {{ todo['description'] }} </strike>
+                    {% else %}
+                        {{ todo['description'] }}
+            
+                    {% endif %}
+                    
+                </h1>
+                <div class="about">
+                    {{ todo['created_at'].strftime('%Y-%m-%d') }}
+                    <a href="{{ url_for('todo.update', id=todo['id']) }}" class="action"> Editar </a>
+                </div>
             </div>
-        </div>
-    </li>
-        {% if not loop.last %}
-            <hr>
-        {% endif %}
-    {% endfor %}
-</ul>
+        </li>
+            {% if not loop.last %}
+                <hr>
+            {% endif %}
+        {% endfor %}
+    </ul>
 
 
 {% endblock %}
